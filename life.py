@@ -1,5 +1,5 @@
 """
-
+Thanks to http://trevorappleton.blogspot.co.uk/2013/07/python-game-of-life.html
 Pre-requisite
 
 Optional Setup a virtual env https://docs.python.org/3/library/venv.html
@@ -60,7 +60,7 @@ Random setup of cells.
 def seedLifeGrid(lifeDict):
     for item in lifeDict:
         lifeDict[item] = random.randint(0,1)
-    return lifeDict
+    #return lifeDict
 
 """
 draw the correct colours on the grid based upon the lifecycle of the cell(item)
@@ -115,7 +115,9 @@ def countNeighbours(item, lifeDict):
     return neighbourCount
 
 """
-Remaps the grid based upon current cell state
+Remaps the grid based upon current cell state.
+Creating a new grid acts as a screen buffer, which is better than modifying
+single cells in a loop which would introduce line scanning effect.
 """
 def tick(lifeDict):
     newTick = {}
@@ -152,7 +154,7 @@ def main():
 
     # setup our life in memory lif grid
     lifeDict=blankGrid()
-    lifeDict=seedLifeGrid(lifeDict)
+    seedLifeGrid(lifeDict)
 
     while True: #main game loop
         for event in pygame.event.get():
