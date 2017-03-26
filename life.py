@@ -106,10 +106,27 @@ def countNeighbours(item, lifeDict):
     for x in range(-1,2):
         for y in range(-1,2):
             if not (x==0 and y==0): #don't check self
-                checkCell = (item[0]+x,item[1]+y)
+                xloc = item[0]+x
+                yloc  = item[1]+y
+
+                #if off of gird then cyle to opposite side
+                if xloc > CELLWIDTH:
+                    xloc=0 #look ot start of grid
+                elif xloc<0:
+                    xloc = CELLWIDTH-1
+
+                if yloc > CELLHEIGHT:
+                    yloc=0
+                elif yloc<0:
+                    yloc = CELLHEIGHT-1
+
+                checkCell = (xloc,yloc)
+
+                #just to make sure
                 if isCellInGrid(checkCell) :
                     if lifeDict[checkCell]==1: #cell is alive and so has affect
                         neighbourCount += 1
+
 
     #print("checkCell [%r]  count of neighbours[%s]" % (item, neighbourCount))
     return neighbourCount
