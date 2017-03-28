@@ -21,6 +21,9 @@ assert WINDOWHEIGHT % CELLSIZE == 0, "Window height must be a multiple of cell s
 CELLWIDTH = int(WINDOWWIDTH / CELLSIZE) # number of cells wide
 CELLHEIGHT = int(WINDOWHEIGHT / CELLSIZE) # Number of cells high
 
+#mouse button attribute
+MOUSEBUTTONLEFT = 1
+
 # set up the colours
 BLACK = (0,0,0)
 WHITE = (255,255,255)
@@ -178,6 +181,11 @@ def main():
             if event.type==QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == MOUSEBUTTONLEFT:
+                print ("You pressed the left mouse button at (%d, %d)" % event.pos)
+                print ("You pressed the left mouse button at (%d, %d)" % (event.pos[0]/CELLSIZE, event.pos[1]/CELLSIZE))
+                lifeDict[(int(event.pos[0]/CELLSIZE),int(event.pos[1]/CELLSIZE))] = CELLALIVE
+
         lifeDict = tick(lifeDict)
         for item in lifeDict:
             colourGrid(item, lifeDict)
