@@ -110,12 +110,12 @@ def countNeighbours(item, lifeDict):
                 yloc  = item[1]+y
 
                 #if off of gird then cyle to opposite side
-                if xloc > CELLWIDTH:
+                if xloc >= CELLWIDTH:
                     xloc=0 #look ot start of grid
                 elif xloc<0:
                     xloc = CELLWIDTH-1
 
-                if yloc > CELLHEIGHT:
+                if yloc >= CELLHEIGHT:
                     yloc=0
                 elif yloc<0:
                     yloc = CELLHEIGHT-1
